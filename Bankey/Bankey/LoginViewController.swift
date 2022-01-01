@@ -1,10 +1,24 @@
 import UIKit
 
+protocol LogoutDelegate: AnyObject {
+    func didLogout()
+}
+
+protocol LoginViewControllerDelegate: AnyObject {
+    //    func didLogin(_ sender: LoginViewController) // pass data
+    func didLogin()
+}
+
 class LoginViewController: UIViewController {
+    
+    let titleLabel = UILabel()
+    let subTitle = UILabel()
     
     let loginView = LoginView()
     let signInButton = UIButton(type: .system)
     let errorMessageLabel = UILabel()
+    
+    weak var delegate: LoginViewControllerDelegate?
     
     var username: String? {
         loginView.usernameTextField.text
@@ -20,11 +34,29 @@ class LoginViewController: UIViewController {
         layout()
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        signInButton.configuration?.showsActivityIndicator = false
+    }
+    
 }
 
 extension LoginViewController {
     private func style() {
         loginView.translatesAutoresizingMaskIntoConstraints = false
+        
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.textAlignment = .center
+        titleLabel.font = UIFont.preferredFont(forTextStyle: .largeTitle)
+        titleLabel.adjustsFontForContentSizeCategory = true
+        titleLabel.text = "Bankey"
+        
+        subTitle.translatesAutoresizingMaskIntoConstraints = false
+        subTitle.textAlignment = .center
+        subTitle.font = UIFont.preferredFont(forTextStyle: .title3)
+        subTitle.adjustsFontForContentSizeCategory = true
+        subTitle.text = "Your premium source for all things banking!"
+        subTitle.numberOfLines = 0
         
         signInButton.translatesAutoresizingMaskIntoConstraints = false
         signInButton.configuration = .filled()
@@ -41,9 +73,26 @@ extension LoginViewController {
     }
     
     private func layout() {
+        view.addSubview(titleLabel)
+        view.addSubview(subTitle)
         view.addSubview(loginView)
         view.addSubview(signInButton)
         view.addSubview(errorMessageLabel)
+        
+        // title
+        
+        NSLayoutConstraint.activate([
+            subTitle.topAnchor.constraint(equalToSystemSpacingBelow: titleLabel.bottomAnchor, multiplier: 3),
+            titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        ])
+        
+        // subtitle
+        
+        NSLayoutConstraint.activate([
+            loginView.topAnchor.constraint(equalToSystemSpacingBelow: subTitle.bottomAnchor, multiplier: 3),
+            subTitle.leadingAnchor.constraint(equalTo: loginView.leadingAnchor),
+            subTitle.trailingAnchor.constraint(equalTo: loginView.trailingAnchor)
+        ])
         
         // loginView
         
@@ -91,6 +140,7 @@ extension LoginViewController {
         
         if username == "Admin" && password == "12345" {
             signInButton.configuration?.showsActivityIndicator = true
+            delegate?.didLogin()
         } else {
             configureView(withMessage: "Incorrect username / password")
         }
