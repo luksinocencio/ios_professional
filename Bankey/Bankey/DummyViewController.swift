@@ -48,6 +48,7 @@ extension DummyViewController {
     
     @objc /// Enables us to interact with objective-c runtime.
     func logoutButtonTapped(sender: UIButton) {
+        LocalState.hasOnboarded = false
         logoutDelegate?.didLogout()
     }
 }
