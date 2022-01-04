@@ -1,0 +1,12 @@
+name: Bankey
+options:
+  bundleIdPrefix: com.devmeist3r
+  createIntermediateGroups: true
+  generateEmptyDirectories: true
+  developmentLanguage: en
+targets:
+  Bankey:
+    type: application
+    platform: iOS
+    deploymentTarget: '15.2'
+    sources: [Bankey]
