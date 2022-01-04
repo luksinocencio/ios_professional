@@ -20,13 +20,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         loginViewController.delegate = self
         onboardingContainerViewController.delegate = self
         dummyViewController.logoutDelegate = self
-        
-        
-        
+
         window?.rootViewController = mainViewController
-//        select start point on tabbar
+///        select start point on tabbar
 //        mainViewController.selectedIndex = 1
-        
         return true
     }
     
