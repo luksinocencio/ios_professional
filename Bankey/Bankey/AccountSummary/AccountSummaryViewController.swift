@@ -23,6 +23,7 @@ extension AccountSummaryViewController {
         
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.showsVerticalScrollIndicator = false
         
         tableView.register(AccountSummaryCell.self, forCellReuseIdentifier: AccountSummaryCell.reuseID)
         tableView.rowHeight = AccountSummaryCell.rowHeight

@@ -46,6 +46,8 @@ class AccountSummaryCell: UITableViewCell {
 
 extension AccountSummaryCell {
     private func setup() {
+        selectionStyle = .none
+        
         typeLabel.translatesAutoresizingMaskIntoConstraints = false
         typeLabel.font = UIFont.preferredFont(forTextStyle: .caption1)
         typeLabel.adjustsFontForContentSizeCategory = true
