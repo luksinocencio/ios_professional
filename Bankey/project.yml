@@ -10,3 +10,10 @@ targets:
     platform: iOS
     deploymentTarget: '15.2'
     sources: [Bankey]
+  BankeyUnitTests:
+    type: bundle.unit-test
+    platform: iOS
+    dependecies:
+      - target: Bankey
+    sources:
+      - path: BankeyUnitTests
