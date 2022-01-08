@@ -9,3 +9,10 @@ targets:
     platform: iOS
     sources:
       - path: Bankey
+  BankeyUnitTests:
+    type: bundle.unit-test
+    platform: iOS
+    dependecies:
+      - target: Bankey
+    sources:
+      - path: BankeyUnitTests
