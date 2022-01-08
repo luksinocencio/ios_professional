@@ -2,21 +2,12 @@ import UIKit
 
 class AccountSummaryViewController: UIViewController {
     
-    struct Profile {
-        let firstName: String
-        let lastName: String
-    }
-    
-    var profile: Profile?
     var accounts: [AccountSummaryCell.ViewModel] = []
-    
-    var header = AccountSummaryHeaderView(frame: .zero)
     var tableView = UITableView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
-        fetchData()
     }
 }
 
@@ -24,13 +15,14 @@ extension AccountSummaryViewController {
     private func setup() {
         setupTableView()
         setupTableHeaderView()
+        fetchData()
     }
     
     private func setupTableView() {
+        tableView.backgroundColor = appColor
+        
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.showsVerticalScrollIndicator = false
-        tableView.backgroundColor = appColor
         
         tableView.register(AccountSummaryCell.self, forCellReuseIdentifier: AccountSummaryCell.reuseID)
         tableView.rowHeight = AccountSummaryCell.rowHeight
@@ -48,9 +40,9 @@ extension AccountSummaryViewController {
     }
     
     private func setupTableHeaderView() {
+        let header = AccountSummaryHeaderView(frame: .zero)
         
-        
-        var size = header.systemLayoutSizeFitting(UIView.layoutFittingExpandedSize)
+        var size = header.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
         size.width = UIScreen.main.bounds.width
         header.frame.size = size
         
@@ -82,11 +74,6 @@ extension AccountSummaryViewController: UITableViewDelegate {
 
 extension AccountSummaryViewController {
     private func fetchData() {
-        fetchAccounts()
-        fetchProfile()
-    }
-    
-    private func fetchAccounts() {
         let savings = AccountSummaryCell.ViewModel(accountType: .Banking,
                                                             accountName: "Basic Savings",
                                                         balance: 929466.23)
@@ -105,16 +92,11 @@ extension AccountSummaryViewController {
         let investment2 = AccountSummaryCell.ViewModel(accountType: .Investment,
                                                        accountName: "Growth Fund",
                                                        balance: 15000.00)
-
         accounts.append(savings)
         accounts.append(chequing)
         accounts.append(visa)
         accounts.append(masterCard)
         accounts.append(investment1)
         accounts.append(investment2)
-    }
-    
-    private func fetchProfile() {
-        profile = Profile(firstName: "Lucas", lastName: "Albuquerque")
     }
 }
