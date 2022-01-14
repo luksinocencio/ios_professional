@@ -18,3 +18,16 @@ targets:
     platform: iOS
     sources:
       - path: BankeyUnitTests
+    dependencies:
+      - target: Bankey
+
+schemes:
+  Bankey:
+    build:
+      targets:
+        Bankey: all
+    test:
+      targets:
+        - name: BankeyUnitTests
+          parallelizable: false
+          randomExecutionOrder: true
