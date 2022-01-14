@@ -133,12 +133,19 @@ extension LoginViewController {
             return
         }
         
-        if username.isEmpty || password.isEmpty {
-            configureView(withMessage: "Username / Password should never be nil")
-            return
-        }
+        //        if username.isEmpty || password.isEmpty {
+        //            configureView(withMessage: "Username / Password should never be nil")
+        //            return
+        //        }
         
-        if username == "Admin" && password == "12345" {
+        
+        // Temporarily turn off this check
+        //        if username.isEmpty || password.isEmpty {
+        //            configureView(withMessage: "Username / password cannot be blank")
+        //            return
+        //        }
+        
+        if username == "" && password == "" {
             signInButton.configuration?.showsActivityIndicator = true
             delegate?.didLogin()
         } else {
