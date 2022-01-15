@@ -11,7 +11,7 @@ class AccountSummaryCell: UITableViewCell {
     struct ViewModel {
         let accountType: AccountType
         let accountName: String
-        let balance: Decimal
+        let balance: Double
         
         var balanceAsAttributedString: NSAttributedString {
             return CurrencyFormatter().makeAttributedCurrency(balance)
@@ -77,7 +77,7 @@ extension AccountSummaryCell {
         let chevronImage = UIImage(systemName: "chevron.right")!.withTintColor(appColor, renderingMode: .alwaysOriginal)
         chevronImageView.image = chevronImage
         
-        contentView.addSubview(typeLabel) // imporant! Add to contentView.
+        contentView.addSubview(typeLabel)
         contentView.addSubview(underlineView)
         contentView.addSubview(nameLabel)
         

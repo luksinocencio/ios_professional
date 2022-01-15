@@ -13,7 +13,7 @@ class Test: XCTestCase {
     
     func testBreakDollarsIntoCents() throws {
         let result = formatter.breakIntoDollarsAndCents(929466.23)
-        XCTAssertEqual(result.0, "929.466")
+        XCTAssertEqual(result.0, "929,466")
         XCTAssertEqual(result.1, "23")
     }
     
