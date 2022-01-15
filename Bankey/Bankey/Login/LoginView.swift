@@ -18,6 +18,8 @@ class LoginView: UIView {
         fatalError("init(coder:) has not beem implemented")
     }
     
+    
+    
     /// intrinsicContentSize: The default size a controls wants to be
 //    override var intrinsicContentSize: CGSize {
 //        return CGSize(width: 200, height: 200)
@@ -44,6 +46,9 @@ extension LoginView {
         passwordTextField.placeholder = "Password"
         passwordTextField.isSecureTextEntry = true
         passwordTextField.delegate = self
+        passwordTextField.clearsOnInsertion = false
+        passwordTextField.clearsOnBeginEditing = false
+        passwordTextField.enablePasswordToggle()
         
     }
     
