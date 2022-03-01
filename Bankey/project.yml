@@ -20,14 +20,11 @@ targets:
       - path: BankeyUnitTests
     dependencies:
       - target: Bankey
-
 schemes:
-  Bankey:
+  All:
     build:
       targets:
-        Bankey: all
+          Bankey: all
     test:
       targets:
-        - name: BankeyUnitTests
-          parallelizable: false
-          randomExecutionOrder: true
+        BankeyUnitTests: all
