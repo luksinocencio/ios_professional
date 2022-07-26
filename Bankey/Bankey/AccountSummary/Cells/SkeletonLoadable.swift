@@ -1,9 +1,5 @@
 import UIKit
 
-/*
- Functional programming inheritance.
- */
-
 protocol SkeletonLoadable {}
 
 extension SkeletonLoadable {
