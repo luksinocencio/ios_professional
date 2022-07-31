@@ -8,7 +8,7 @@ class PasswordTextField: UIView {
     let eyeButton = UIButton(type: .custom)
     let dividerView = UIView()
     let errorLabel = UILabel()
-        
+    
     init(placeHolderText: String) {
         self.placeHolderText = placeHolderText
         
@@ -30,13 +30,13 @@ class PasswordTextField: UIView {
 extension PasswordTextField {
     func style() {
         translatesAutoresizingMaskIntoConstraints = false
-//        backgroundColor = .systemOrange
+        //        backgroundColor = .systemOrange
         
         lockImageView.translatesAutoresizingMaskIntoConstraints = false
         
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.isSecureTextEntry = false
-//        textField.delegate = self
+        //        textField.delegate = self
         textField.keyboardType = .asciiCapable
         textField.attributedPlaceholder = NSAttributedString(string: placeHolderText, attributes: [NSAttributedString.Key.foregroundColor: UIColor.secondaryLabel])
         
@@ -52,8 +52,8 @@ extension PasswordTextField {
         errorLabel.textColor = .systemRed
         errorLabel.font = .preferredFont(forTextStyle: .footnote)
         errorLabel.text = "Your password must meet the requirements below."
-//        errorLabel.adjustsFontSizeToFitWidth = true
-//        errorLabel.minimumScaleFactor = 0.0
+        //        errorLabel.adjustsFontSizeToFitWidth = true
+        //        errorLabel.minimumScaleFactor = 0.0
         errorLabel.numberOfLines = 0
         errorLabel.lineBreakMode = .byWordWrapping
         errorLabel.isHidden = false
@@ -69,13 +69,13 @@ extension PasswordTextField {
         // lock
         NSLayoutConstraint.activate([
             lockImageView.centerYAnchor.constraint(equalTo: textField.centerYAnchor),
-            lockImageView.leadingAnchor.constraint(equalTo: leadingAnchor)
+            lockImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
         ])
         
-        // textField
+        // textfield
         NSLayoutConstraint.activate([
             textField.topAnchor.constraint(equalTo: topAnchor),
-            textField.leadingAnchor.constraint(equalToSystemSpacingAfter: lockImageView.trailingAnchor, multiplier: 1)
+            textField.leadingAnchor.constraint(equalToSystemSpacingAfter: lockImageView.trailingAnchor, multiplier: 1),
         ])
         
         // eyeButton
