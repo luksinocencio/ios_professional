@@ -51,7 +51,6 @@ class PasswordTextField: UIView {
 extension PasswordTextField {
     func style() {
         translatesAutoresizingMaskIntoConstraints = false
-        //        backgroundColor = .systemOrange
         
         lockImageView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -76,8 +75,6 @@ extension PasswordTextField {
         errorLabel.textColor = .systemRed
         errorLabel.font = .preferredFont(forTextStyle: .footnote)
         errorLabel.text = "Your password must meet the requirements below."
-        //        errorLabel.adjustsFontSizeToFitWidth = true
-        //        errorLabel.minimumScaleFactor = 0.0
         errorLabel.numberOfLines = 0
         errorLabel.lineBreakMode = .byWordWrapping
         errorLabel.isHidden = true
@@ -125,6 +122,7 @@ extension PasswordTextField {
         ])
         
         // CHCR
+        
         // defaultHigh (compress)
         // defaultLow (expand)
         lockImageView.setContentHuggingPriority(UILayoutPriority.defaultHigh, for: .horizontal)

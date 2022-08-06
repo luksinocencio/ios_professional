@@ -1,6 +1,6 @@
 import UIKit
 
-class PasswordCriterialView: UIView {
+class PasswordCriteriaView: UIView {
     
     let stackView = UIStackView()
     let imageView = UIImageView()
@@ -10,30 +10,24 @@ class PasswordCriterialView: UIView {
     let xmarkImage = UIImage(systemName: "xmark.circle")!.withTintColor(.systemRed, renderingMode: .alwaysOriginal)
     let circleImage = UIImage(systemName: "circle")!.withTintColor(.tertiaryLabel, renderingMode: .alwaysOriginal)
     
-    var isCriterialMet: Bool = false {
+    var isCriteriaMet: Bool = false {
         didSet {
-            if isCriterialMet {
+            if isCriteriaMet {
                 imageView.image = checkmarkImage
             } else {
                 imageView.image = xmarkImage
             }
         }
     }
-    
+
     func reset() {
-        isCriterialMet = false
+        isCriteriaMet = false
         imageView.image = circleImage
     }
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-        style()
-        layout()
-    }
-    
+
     init(text: String) {
         super.init(frame: .zero)
+        
         label.text = text
         
         style()
@@ -45,11 +39,12 @@ class PasswordCriterialView: UIView {
     }
     
     override var intrinsicContentSize: CGSize {
-        return CGSize(width: 200, height: 40)
+        return CGSize(width: UIView.noIntrinsicMetric, height: 40)
     }
 }
 
-extension PasswordCriterialView {
+extension PasswordCriteriaView {
+    
     func style() {
         translatesAutoresizingMaskIntoConstraints = false
         
@@ -70,19 +65,37 @@ extension PasswordCriterialView {
         
         addSubview(stackView)
         
+        // Stack
         NSLayoutConstraint.activate([
-            stackView.leadingAnchor.constraint(equalTo: leadingAnchor),
             stackView.topAnchor.constraint(equalTo: topAnchor),
+            stackView.leadingAnchor.constraint(equalTo: leadingAnchor),
             stackView.trailingAnchor.constraint(equalTo: trailingAnchor),
             stackView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
         
+        // Image
         NSLayoutConstraint.activate([
             imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor)
         ])
         
         // CHCR
-        imageView.setContentHuggingPriority(.defaultHigh, for: .horizontal)
-        label.setContentHuggingPriority(.defaultLow, for: .horizontal)
+        imageView.setContentHuggingPriority(UILayoutPriority.defaultHigh, for: .horizontal)
+        label.setContentHuggingPriority(UILayoutPriority.defaultLow, for: .horizontal)
+    }
+}
+
+// MARK: - Tests
+
+extension PasswordCriteriaView {
+    var isCheckMarkImage: Bool {
+        return imageView.image == checkmarkImage
+    }
+
+    var isXmarkImage: Bool {
+        return imageView.image == xmarkImage
+    }
+
+    var isResetImage: Bool {
+        return imageView.image == circleImage
     }
 }
