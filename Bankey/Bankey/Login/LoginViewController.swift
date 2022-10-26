@@ -1,5 +1,8 @@
 import UIKit
 
+
+// MARK: - Protocols
+
 protocol LogoutDelegate: AnyObject {
     func didLogout()
 }
